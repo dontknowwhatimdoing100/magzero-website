@@ -322,9 +322,9 @@ img { max-width: 100%; display: block; }
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: clamp(32px, 4vw, 52px);
+  font-size: clamp(40px, 5.5vw, 64px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
   margin-bottom: 24px;
   letter-spacing: -2px;
   max-width: 900px;
@@ -1130,7 +1130,7 @@ section { padding: 120px 0; }
   }
 
   .hero { min-height: auto; padding: 140px 24px 80px; }
-  .hero h1 { font-size: 28px; letter-spacing: -0.5px; }
+  .hero h1 { font-size: 32px; letter-spacing: -0.5px; }
   .hero-stats { flex-direction: column; gap: 24px; }
   .stat-divider { display: none; }
 
