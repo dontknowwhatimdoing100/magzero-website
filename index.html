@@ -6,8 +6,10 @@
   <title>Magzero Technologies — High-Efficiency Chilled Water Systems</title>
   <meta name="description" content="Cut chiller plant energy costs by up to 50%. Magnetic bearing chillers, smart fan grids, and Danfoss TurboCor parts. Call 877.825.1766.">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
   <!-- Navigation -->
@@ -65,6 +67,142 @@
           <span class="stat-number">24/7</span>
           <span class="stat-label">Technical Support</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HMI Dashboard Showcase -->
+  <section class="dashboard-showcase">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Chiller Overwatch</span>
+        <h2>Real-Time Plant Intelligence</h2>
+        <p>Our proprietary monitoring platform gives you complete visibility into every compressor, every setpoint, every watt — 24/7.</p>
+      </div>
+
+      <!-- HMI Status Bar -->
+      <div class="hmi-frame">
+        <div class="hmi-topbar">
+          <div class="hmi-brand">
+            <img src="https://static.wixstatic.com/media/71b5a1_0029285b065c4530a2f1b9e4616e86a5~mv2.png/v1/fill/w_289,h_57,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/MagzeroTech_NoStack_Small.png" alt="Magzero" class="hmi-logo">
+            <span class="hmi-sep"></span>
+            <span class="hmi-title">CHILLER OVERWATCH</span>
+          </div>
+          <div class="hmi-status-pills">
+            <div class="hmi-pill"><span class="hmi-pill-lbl">PLANT COP</span><span class="hmi-pill-val cyan">6.82</span></div>
+            <div class="hmi-pill"><span class="hmi-pill-lbl">LOAD</span><span class="hmi-pill-val green">847 <small>TONS</small></span></div>
+            <div class="hmi-pill"><span class="hmi-pill-lbl">kW/TON</span><span class="hmi-pill-val cyan">0.42</span></div>
+            <div class="hmi-pill"><span class="hmi-pill-lbl">CHW SUPPLY</span><span class="hmi-pill-val">44.2 <small>&deg;F</small></span></div>
+            <div class="hmi-pill"><span class="hmi-pill-lbl">CW SUPPLY</span><span class="hmi-pill-val">78.6 <small>&deg;F</small></span></div>
+          </div>
+          <div class="hmi-right">
+            <span class="hmi-conn-dot"></span>
+            <span class="hmi-conn-lbl">LIVE</span>
+            <span class="hmi-clock" id="hmiClock">--:--:--</span>
+          </div>
+        </div>
+
+        <!-- Alarm Strip -->
+        <div class="hmi-alarm-strip">
+          <div class="hmi-alarm-label">
+            <span>ALARMS</span>
+            <span class="hmi-alarm-count ok">0</span>
+          </div>
+          <div class="hmi-alarm-ticker">
+            <div class="hmi-alarm-item"><span class="hmi-sev normal"></span>All systems nominal</div>
+            <div class="hmi-alarm-item"><span class="hmi-sev normal"></span>Compressor 1 — Running @ 82%</div>
+            <div class="hmi-alarm-item"><span class="hmi-sev normal"></span>Compressor 2 — Running @ 67%</div>
+            <div class="hmi-alarm-item"><span class="hmi-sev normal"></span>CT Fan Grid — 4/6 active</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="hmi-dashboard">
+          <!-- Gauge Row -->
+          <div class="hmi-gauges-row">
+            <div class="hmi-gauge-card">
+              <div class="hmi-gauge-label">COMPRESSOR 1</div>
+              <canvas id="gauge1" width="160" height="160"></canvas>
+              <div class="hmi-gauge-val" id="gaugeVal1">82%</div>
+              <div class="hmi-gauge-sub">TT700 &bull; 2,847 RPM</div>
+            </div>
+            <div class="hmi-gauge-card">
+              <div class="hmi-gauge-label">COMPRESSOR 2</div>
+              <canvas id="gauge2" width="160" height="160"></canvas>
+              <div class="hmi-gauge-val" id="gaugeVal2">67%</div>
+              <div class="hmi-gauge-sub">TT500 &bull; 2,312 RPM</div>
+            </div>
+            <div class="hmi-gauge-card">
+              <div class="hmi-gauge-label">PLANT EFFICIENCY</div>
+              <canvas id="gauge3" width="160" height="160"></canvas>
+              <div class="hmi-gauge-val green" id="gaugeVal3">0.42</div>
+              <div class="hmi-gauge-sub">kW/TON &bull; Optimal</div>
+            </div>
+            <div class="hmi-gauge-card">
+              <div class="hmi-gauge-label">COOLING TOWER</div>
+              <canvas id="gauge4" width="160" height="160"></canvas>
+              <div class="hmi-gauge-val" id="gaugeVal4">78.6&deg;</div>
+              <div class="hmi-gauge-sub">CW Leaving &bull; 6 Fans</div>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="hmi-charts-row">
+            <div class="hmi-chart-card">
+              <div class="hmi-chart-header">
+                <span class="hmi-chart-title">PLANT LOAD — 24H TREND</span>
+                <span class="hmi-chart-live">LIVE</span>
+              </div>
+              <canvas id="loadChart" height="180"></canvas>
+            </div>
+            <div class="hmi-chart-card">
+              <div class="hmi-chart-header">
+                <span class="hmi-chart-title">EFFICIENCY — kW/TON</span>
+                <span class="hmi-chart-live">LIVE</span>
+              </div>
+              <canvas id="effChart" height="180"></canvas>
+            </div>
+          </div>
+
+          <!-- Metric Cards Row -->
+          <div class="hmi-metrics-row">
+            <div class="hmi-metric" style="--accent: #4de8ff">
+              <div class="hmi-metric-lbl">EVAP PRESS</div>
+              <div class="hmi-metric-val">62.4 <small>PSI</small></div>
+              <div class="hmi-metric-sub">Target: 63.0</div>
+            </div>
+            <div class="hmi-metric" style="--accent: #2edb6f">
+              <div class="hmi-metric-lbl">COND PRESS</div>
+              <div class="hmi-metric-val">142.8 <small>PSI</small></div>
+              <div class="hmi-metric-sub">Target: 145.0</div>
+            </div>
+            <div class="hmi-metric" style="--accent: #5ba3ff">
+              <div class="hmi-metric-lbl">SUPERHEAT</div>
+              <div class="hmi-metric-val">8.2 <small>&deg;F</small></div>
+              <div class="hmi-metric-sub">Range: 5-15</div>
+            </div>
+            <div class="hmi-metric" style="--accent: #a78bff">
+              <div class="hmi-metric-lbl">BEARING TEMP</div>
+              <div class="hmi-metric-val">142 <small>&deg;F</small></div>
+              <div class="hmi-metric-sub">Limit: 200</div>
+            </div>
+            <div class="hmi-metric" style="--accent: #ffcc33">
+              <div class="hmi-metric-lbl">VIBRATION</div>
+              <div class="hmi-metric-val">0.08 <small>IPS</small></div>
+              <div class="hmi-metric-sub">Limit: 0.50</div>
+            </div>
+            <div class="hmi-metric" style="--accent: #2edb6f">
+              <div class="hmi-metric-lbl">RUN HOURS</div>
+              <div class="hmi-metric-val">14,872</div>
+              <div class="hmi-metric-sub">Since commission</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-cta">
+        <p>Chiller Overwatch comes standard with every Magzero system.</p>
+        <a href="contact.html" class="btn btn-primary">See It in Action</a>
       </div>
     </div>
   </section>
@@ -266,5 +404,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
