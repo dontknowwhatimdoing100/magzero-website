@@ -265,6 +265,8 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   background:
+    linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.85) 100%),
+    url('../images/under-the-hood.jpg') center/cover no-repeat,
     radial-gradient(ellipse 50% 50% at 50% 45%, rgba(232,72,63,0.08) 0%, transparent 70%),
     radial-gradient(circle at 20% 80%, rgba(232,72,63,0.04) 0%, transparent 40%),
     var(--dark);
@@ -320,9 +322,9 @@ img { max-width: 100%; display: block; }
 
 .hero h1 {
   font-family: var(--font-heading);
-  font-size: clamp(40px, 6vw, 80px);
+  font-size: clamp(32px, 4vw, 52px);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.1;
   margin-bottom: 24px;
   letter-spacing: -2px;
   max-width: 900px;
@@ -1128,7 +1130,7 @@ section { padding: 120px 0; }
   }
 
   .hero { min-height: auto; padding: 140px 24px 80px; }
-  .hero h1 { font-size: 36px; letter-spacing: -1px; }
+  .hero h1 { font-size: 28px; letter-spacing: -0.5px; }
   .hero-stats { flex-direction: column; gap: 24px; }
   .stat-divider { display: none; }
 
