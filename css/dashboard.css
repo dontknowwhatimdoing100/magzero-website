@@ -260,6 +260,11 @@
   padding: 16px;
   overflow: hidden;
 }
+.hmi-chart-wrap {
+  position: relative;
+  height: 180px;
+  width: 100%;
+}
 .hmi-chart-header {
   display: flex;
   align-items: center;
